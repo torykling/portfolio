@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, Redirect } from "react-router-dom";
 import Projects from "./components/Projects";
 import About from "./components/About";
 import Contact from "./components/Contact";
@@ -16,7 +16,7 @@ function App() {
         <h2>Software Engineer</h2>
         <div className="navBottom">
           <div>
-            <Link to="/">Projects</Link> <Link to="/about">About</Link>{" "}
+            <Link to="/projects">Projects</Link> <Link to="/about">About</Link>{" "}
             <Link to="/contact">Contact</Link>{" "}
             <a
               href="https://torykling.github.io/deploy_resume/"
@@ -52,7 +52,8 @@ function App() {
         </div>
       </nav>
       <main>
-        <Route path="/" exact render={routerProps => <Projects />} />
+        <Route path="/" exact render={() => <Redirect to="/projects" />} />
+        <Route path="/projects" exact render={routerProps => <Projects />} />
         <Route path="/about" exact render={routerProps => <About />} />
         <Route path="/contact" exact render={routerProps => <Contact />} />
       </main>
